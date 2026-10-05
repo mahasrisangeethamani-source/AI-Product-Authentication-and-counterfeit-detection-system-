@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VeriTrust AI - Product authentication</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3Z" fill="none" stroke="#ff4fa3" stroke-width="1.6"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <div class="name">VeriTrust <b>AI</b></div>
+        <div class="tag">Authenticity &bull; Trust &bull; Security</div>
+      </div>
+    </div>
+    <div class="right">
+      <div id="status" class="pill">Checking backend...</div>
+      <div class="bell" data-go="alerts">&#128276;<span id="bellBadge">0</span></div>
+      <div class="user"><div class="avatar">&#128100;</div><div><div>User</div><small>Client Side</small></div></div>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="side">
+      <button class="sb active" data-go="top">Dashboard</button>
+      <button class="sb" data-go="verifyCard">Verify Product</button>
+      <button class="sb" data-go="historyCard">Products</button>
+      <button class="sb" data-go="historyCard">Scan History</button>
+      <button class="sb" data-go="alerts">Alerts <span id="sideBadge" class="badge">0</span></button>
+      <button class="sb" data-go="overview">Analytics</button>
+      <button class="sb" data-go="top">Settings</button>
+      <div class="slogan">Real Products.<br>Real Trust.</div>
+    </aside>
+
+    <main id="top">
+      <div class="welcome">
+        <div><h1>Welcome Back! &#128075;</h1><p>Here's what's happening with your product authenticity.</p></div>
+        <div class="date"><small>Today</small><div id="today"></div></div>
+      </div>
+
+      <section class="stats">
+        <div class="card stat"><div class="ico pink">&#9638;</div><div><span>Total Scans</span><b id="sTotal">0</b></div></div>
+        <div class="card stat"><div class="ico green">&#10003;</div><div><span>Authentic Products</span><b id="sOk">0</b></div></div>
+        <div class="card stat"><div class="ico red">!</div><div><span>Counterfeit Products</span><b id="sBad">0</b></div></div>
+        <div class="card stat"><div class="ico purple">&#9678;</div><div><span>Detection Rate</span><b id="sRate">0%</b></div></div>
+      </section>
+
+      <div class="cols">
+        <div class="col">
+          <section class="card" id="verifyCard">
+            <h2>Verify Product</h2>
+            <p class="muted">Upload a product image and enter the serial code to check its authenticity.</p>
+            <div class="verify">
+              <label class="drop" id="drop">
+                <input type="file" id="file" accept="image/png,image/jpeg,image/webp" hidden>
+                <img id="preview" alt="Product preview" hidden>
+                <div id="dropText">
+                  <div class="cloud">&#9729;</div>
+                  Drag &amp; drop product image here<br><small>or</small><br>
+                  <span class="btn small">Choose File</span>
+                  <small class="fmt">Supported formats: JPG, PNG, WEBP</small>
+                </div>
+              </label>
+              <div class="form">
+                <label for="brand">Brand</label>
+                <input class="field" id="brand" placeholder="e.g. Nike, Apple, Gucci, Samsung">
+                <label for="serial">Serial Number</label>
+                <input class="field" id="serial" placeholder="Enter product serial code, e.g. A1B2C3">
+                <button class="btn" id="verify">Verify Product</button>
+              </div>
+            </div>
+            <div id="result" class="resultBox" hidden></div>
+          </section>
+
+          <section class="card" id="historyCard">
+            <div class="row"><h2>Recent Scan History</h2><button class="link" id="clearHistory">Clear all</button></div>
+            <table>
+              <thead><tr><th>#</th><th>Product</th><th>Serial Code</th><th>Result</th><th>Score</th><th>Date &amp; Time</th></tr></thead>
+              <tbody id="history"><tr><td colspan="6" class="muted">No scans yet.</td></tr></tbody>
+            </table>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="card" id="overview">
+            <h2>Product Authenticity Overview</h2>
+            <div class="pieWrap">
+              <div class="pie" id="pie"><div class="hole"><b id="pieNum">0%</b><span>Authentic</span></div></div>
+              <ul class="legend">
+                <li><i class="dot g"></i>Authentic<br><small id="lgOk">0 (0%)</small></li>
+                <li><i class="dot a"></i>Suspicious<br><small id="lgWarn">0 (0%)</small></li>
+                <li><i class="dot p"></i>Counterfeit<br><small id="lgBad">0 (0%)</small></li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Quick Actions</h2>
+            <div class="qa">
+              <button class="qbtn" data-go="verifyCard">Verify Product</button>
+              <button class="qbtn" data-go="historyCard">Scan History</button>
+            </div>
+          </section>
+
+          <section class="card" id="alerts">
+            <h2>Latest Alerts</h2>
+            <ul id="alertList" class="alerts"><li class="muted">No alerts yet.</li></ul>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
